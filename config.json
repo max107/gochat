@@ -1,1 +1,1 @@
-{"path":"../repos/","base_url":"git@192.168.0.249:/volume1/storage/repos","listen":":9123"}
+{"listen":":9123","db_path":"./database.sqlite3"}

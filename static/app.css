@@ -1,0 +1,10 @@
+body {
+    font-family: Ubuntu, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    background-color: #f1f1f1;
+    color: #353535;
+}
+
+#wrapper {
+    padding: 25px;
+}
