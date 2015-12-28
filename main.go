@@ -8,6 +8,8 @@ import (
 	"github.com/robvdl/pongo2gin"
 	"net/http"
 
+	chat "./chat"
+
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
 	"gopkg.in/doug-martin/goqu.v3"
@@ -22,10 +24,10 @@ var config = struct {
 }{}
 
 var db *goqu.Database
-var server *Server
+var server *chat.Server
 
 func init() {
-	server = NewServer()
+	server = chat.NewServer()
 
 	// gin.SetMode(gin.ReleaseMode)
 	// Read config file
