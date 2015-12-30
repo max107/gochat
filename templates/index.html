@@ -4,30 +4,43 @@
         <link rel="stylesheet" type="text/css" href="/static/normalize.css"/>
         <link rel="stylesheet" type="text/css" href="/static/app.css"/>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                var c;
+                var data = {foo: "bar"};
+
+                $('#send').on('click', function(e) {
+                    c.send(JSON.stringify(data));
+                });
+
+                $('#form').on('submit', function(e) {
+                    e.preventDefault();
+
+                    var name = $('#name').val();
+                    
+                    c = new WebSocket('ws://localhost:9123/ws/max');
+
+                    c.onmessage = function(msg) {
+                        $("#output").append((new Date())+ " <== "+msg.data+"\n");
+                        console.log(msg);
+                    }
+
+                    c.onopen = function() {
+                        console.log('connected');
+                    }        
+                });
+            })
+        </script>
     </head>
     <body>
         <div id="wrapper">
             <h1>Test</h1>
-
+            <form id="form">
+                <input id="name" type="text" value="foobar" placeholder="username..." />
+                <input type="submit" />
+            </form>
+            <input id="send" type="button" value="send" />
             <pre id="output"></pre>
-            <script>
-              c = new WebSocket('ws://localhost:9123/ws/max');
-              
-              send = function(data) {
-                c.send(data);
-              }
-
-              c.onmessage = function(msg) {
-                $("#output").append((new Date())+ " <== "+msg.data+"\n");
-                console.log(msg);
-              }
-
-              // c.onopen = function(){
-              //   setInterval( 
-              //     function(){ send("ping") }
-              //   , 1000 )
-              // }
-            </script>
         </div>
     </body>
 </html>

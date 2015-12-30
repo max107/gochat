@@ -35,21 +35,21 @@ func (self *Server) UpdateWsHandler(name string, w http.ResponseWriter, r *http.
 	c.reader()
 }
 
-func (self *Server) BroadcastToUsers(msg []byte) {
-	go func() {
-		for _, user := range self.Users {
-			// Send message from system to user
-		}
-	}()
-}
+// func (self *Server) BroadcastToUsers(msg []byte) {
+// 	go func() {
+// 		for _, user := range self.Users {
+// 			// Send message from system to user
+// 		}
+// 	}()
+// }
 
-func (self *Server) BroadcastToChannels(msg []byte) {
-	go func() {
-		for name, channel := range self.Channels {
-			// Send message from system to channels
-		}
-	}()
-}
+// func (self *Server) BroadcastToChannels(msg []byte) {
+// 	go func() {
+// 		for name, channel := range self.Channels {
+// 			// Send message from system to channels
+// 		}
+// 	}()
+// }
 
 func (self *Server) FindUser(name string) (*User, error) {
 	for _, user := range self.Users {
